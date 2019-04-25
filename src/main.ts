@@ -8,7 +8,7 @@ import './registerServiceWorker';
 
 Vue.config.productionTip = false;
 
-import 'vuesax/dist/vuesax.css' //Vuesax styles
+import 'vuesax/dist/vuesax.css'; // Vuesax styles
 Vue.use(Vuesax);
 
 new Vue({

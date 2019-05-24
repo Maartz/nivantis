@@ -9,7 +9,7 @@
                 <div slot="header">
                     <h1>Discount Rate</h1>
                     <br>
-                    <p>This is the discount rate: {{ discount }}</p>
+                    <p>This is the discount rate: {{ discountRate.toFixed(2) }} %</p>
                 </div>
                 <vs-col vs-type="flex"
                         vs-justify="center"
@@ -19,37 +19,56 @@
                         <form class="centerx labelx">
                             <vs-row>
                                 <vs-col vs-type="flex"
-                                        vs-justify="center" vs-align="center" vs-w="6">
-                                    <vs-input label="Prix d'achat net" v-model="netPrice"/>
+                                        vs-justify="center"
+                                        vs-align="center"
+                                        vs-w="6">
+                                    <vs-input label="Prix d'achat net"
+                                              v-model.number="netPrice"/>
                                 </vs-col>
                                 <vs-col vs-type="flex"
-                                        vs-justify="center" vs-align="center" vs-w="6">
-                                    <vs-input label="Taux de remise" v-model="discountRate"/>
+                                        vs-justify="center"
+                                        vs-align="center"
+                                        vs-w="6">
+                                    <vs-input
+                                            label="Prix d'achat brut"
+                                            v-model.number="rawPrice"/>
                                 </vs-col>
                                 <vs-col vs-type="flex"
-                                        vs-justify="center" vs-align="center" vs-w="6">
-                                    <vs-input label="Prix de vente net" v-model="sellPrice"/>
+                                        vs-justify="center"
+                                        vs-align="center"
+                                        vs-w="6">
+                                    <vs-input label="Prix de vente net"
+                                              v-model.number="sellPrice"/>
                                 </vs-col>
                                 <vs-col vs-type="flex"
-                                        vs-justify="center" vs-align="center" vs-w="6">
-                                    <vs-input label="Coefficient multiplicateur" v-model="coeff"/>
+                                        vs-justify="center"
+                                        vs-align="center"
+                                        vs-w="6">
+                                    <vs-input label="Coefficient multiplicateur"
+                                              v-model.number="coeff"/>
                                 </vs-col>
                             </vs-row>
                         </form>
                     </vs-row>
                 </vs-col>
-                <vs-button :color="colorx" :gradient-color-secondary="colorx2"
+                <vs-button :color="colorX"
+                           :gradient-color-secondary="colorX2"
                            type="gradient"
-                           v-on:click="getDiscountRate">Calculer
+                           v-on:click="getDiscountRate(netPrice, rawPrice)">
+                    Calculer
                 </vs-button>
-                <vs-button color="dark" type="flat" v-on:click="emptyFields">Effacer</vs-button>
+                <vs-button color="dark"
+                           type="flat"
+                           v-on:click="emptyFields">
+                    Effacer
+                </vs-button>
             </vs-card>
         </vs-col>
     </vs-row>
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import {Component, Vue} from "vue-property-decorator";
 
     @Component
     export default class DiscountRate extends Vue {
@@ -60,23 +79,21 @@
         public discountRate: number = 0;
         public sellPrice: number = 0;
         public rawPrice: number = 0;
-        public discount: number = 0;
 
         // CSS purpose
-
-        public colorx: string = '#3dd495';
-        public colorx2: string = '#5252e8';
+        public colorX: string = "#3dd495";
+        public colorX2: string = "#5252e8";
 
         public getDiscountRate(netPrice: number, rawPrice: number) {
-            const ds: number =  ( 1 - netPrice / rawPrice ) * 100;
-            // console.log({ds});
+            const ds: number = (1 - netPrice / rawPrice) * 100;
+            return this.discountRate = ds;
         }
 
         public emptyFields() {
             this.coeff = 0;
             this.netPrice = 0;
-            this.discountRate = 0;
             this.sellPrice = 0;
+            this.rawPrice = 0;
         }
 
     }

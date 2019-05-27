@@ -15,7 +15,7 @@
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.1.0",
     "vue-router": "^3.0.3",
-    "vuesax": "^3.8.61",
+    "vuesax": "^3.8.65",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

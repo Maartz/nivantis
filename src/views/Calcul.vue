@@ -2,7 +2,6 @@
     <div>
         <h1>Calcul</h1>
         <DiscountRate/>
-        <Coeff/>
         <NetPrice/>
         <ActualPrice/>
         <Coeff/>
@@ -23,9 +22,7 @@
             Coeff,
             NetPrice,
             ActualPrice,
-            ActualPrice,
-            Coeff
-        }
+        },
     })
     export default class Calcul extends Vue {}
 </script>

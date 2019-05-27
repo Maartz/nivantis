@@ -6,4 +6,5 @@ cache:
   directories:
     - "node_modules"
 
-script: test:unit
+script:
+  - npm run test:unit

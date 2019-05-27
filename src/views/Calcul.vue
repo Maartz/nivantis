@@ -2,11 +2,8 @@
     <div>
         <h1>Calcul</h1>
         <DiscountRate/>
-<<<<<<< HEAD
         <NetPrice/>
-=======
         <ActualPrice/>
->>>>>>> master
     </div>
 </template>
 
@@ -20,11 +17,8 @@
     @Component({
         components: {
             DiscountRate,
-<<<<<<< HEAD
-            NetPrice
-=======
+            NetPrice,
             ActualPrice,
->>>>>>> master
         },
     })
     export default class Calcul extends Vue {}

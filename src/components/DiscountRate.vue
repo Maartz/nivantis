@@ -68,7 +68,7 @@
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from "vue-property-decorator";
+    import {Component, Vue} from 'vue-property-decorator';
 
     @Component
     export default class DiscountRate extends Vue {
@@ -81,8 +81,8 @@
         public rawPrice: number = 0;
 
         // CSS purpose
-        public colorX: string = "#3dd495";
-        public colorX2: string = "#5252e8";
+        public colorX: string = '#3dd495';
+        public colorX2: string = '#5252e8';
 
         public getDiscountRate(netPrice: number, rawPrice: number) {
             const ds: number = (1 - netPrice / rawPrice) * 100;

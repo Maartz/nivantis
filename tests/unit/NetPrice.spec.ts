@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils';
+import {shallowMount} from '@vue/test-utils';
 import NetPrice from '@/components/NetPrice.vue';
 
 describe('NetPrice.vue', () => {

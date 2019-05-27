@@ -44,20 +44,14 @@
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from 'vue-property-decorator';
+    import {Component, Prop, Vue} from 'vue-property-decorator';
 
     @Component
     export default class NetPrice extends Vue {
-        public index: number = 0;
+        @Prop({default: 0}) public rawPrice !: number; // PRIX D'ACHAT BRUT
+        @Prop({default: 0}) public discountRate !: number; // TAUX DE REMISE
+        @Prop({default: 0}) public netPrice !: number; // PRIX D'ACHAT NET
 
-        public rawPrice: number = 0; // PRIX D'ACHAT BRUT
-        public discountRate: number = 0; // TAUX DE REMISE
-        public netPrice: number = 0; // PRIX D'ACHAT NET
-
-        // CSS purpose
-
-        public colorx: string = '#3dd495';
-        public colorx2: string = '#5252e8';
 
         public getRawPrice(netPrice: number, discountRate: number) {
             const rawPrice: number = netPrice / (1 - discountRate);
@@ -74,11 +68,11 @@
             return netPrice;
         }
 
-        public calculateNetPrice(){
+        public calculateNetPrice() {
             this.netPrice = this.getNetPrice(this.rawPrice, this.discountRate);
         }
 
-        public calculateRawPrice(){
+        public calculateRawPrice() {
             this.rawPrice = this.getRawPrice(this.netPrice, this.discountRate);
         }
 

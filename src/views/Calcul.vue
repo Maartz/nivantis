@@ -5,23 +5,26 @@
         <Coeff/>
         <NetPrice/>
         <ActualPrice/>
+        <Coeff/>
     </div>
 </template>
 
 
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
-    import DiscountRate from '@/components/DiscountRate.vue'; // @ is an alias to /src
-    import Coeff from '@/components/Coeff.vue';
-    import ActualPrice from '@/components/ActualPrice.vue';
+    import ActualPrice from '@/components/ActualPrice.vue'; // @ is an alias to /src
     import NetPrice from '@/components/NetPrice.vue';
+    import DiscountRate from '@/components/DiscountRate.vue';
+    import Coeff from '@/components/Coeff.vue';
 
     @Component({
         components: {
             DiscountRate,
             Coeff,
             NetPrice,
-            ActualPrice
+            ActualPrice,
+            ActualPrice,
+            Coeff
         }
     })
     export default class Calcul extends Vue {}

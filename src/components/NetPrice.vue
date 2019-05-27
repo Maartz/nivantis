@@ -20,13 +20,11 @@
 							<vs-row>
 								<vs-col vs-type="flex"
 								        vs-justify="center" vs-align="center" vs-w="6">
-									<vs-input label="Prix d'achat brut" v-model="rawPrice" type="number"
-									          @change="calculateNetPrice"/>
+									<vs-input label="Prix d'achat brut" v-model="rawPrice" type="number" />
 								</vs-col>
 								<vs-col vs-type="flex"
 								        vs-justify="center" vs-align="center" vs-w="6">
-									<vs-input label="Taux de remise" v-model="discountRate" type="number" step="0.1"
-									          @change="calculateNetPrice"/>
+									<vs-input label="Taux de remise" v-model="discountRate" type="number" step="0.1" />
 								</vs-col>
 								<vs-col vs-type="flex"
 								        vs-justify="center" vs-align="center" vs-w="6">
@@ -44,14 +42,16 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import {Component, Prop, Watch, Vue} from 'vue-property-decorator';
 
     @Component
     export default class NetPrice extends Vue {
+        public index: number = 0;
+
         @Prop({default: 0}) public rawPrice !: number; // PRIX D'ACHAT BRUT
         @Prop({default: 0}) public discountRate !: number; // TAUX DE REMISE
-        @Prop({default: 0}) public netPrice !: number; // PRIX D'ACHAT NET
 
+	    public netPrice: number = 0; // PRIX D'ACHAT NET
 
         public getRawPrice(netPrice: number, discountRate: number) {
             const rawPrice: number = netPrice / (1 - discountRate);
@@ -68,18 +68,21 @@
             return netPrice;
         }
 
-        public calculateNetPrice() {
-            this.netPrice = this.getNetPrice(this.rawPrice, this.discountRate);
-        }
-
-        public calculateRawPrice() {
-            this.rawPrice = this.getRawPrice(this.netPrice, this.discountRate);
-        }
-
         public emptyFields() {
             this.rawPrice = 0;
             this.netPrice = 0;
             this.discountRate = 0;
+        }
+
+        @Watch('rawPrice', {immediate: true})
+        @Watch('discountRate', {immediate: true})
+        private calculateNetPrice() {
+            this.netPrice = this.getNetPrice(this.rawPrice, this.discountRate);
+        }
+
+        @Watch('netPrice')
+        private calculateRawPrice() {
+            this.rawPrice = this.getRawPrice(this.netPrice, this.discountRate);
         }
 
     }

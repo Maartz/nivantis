@@ -28,8 +28,7 @@
 								</vs-col>
 								<vs-col vs-type="flex"
 								        vs-justify="center" vs-align="center" vs-w="6">
-									<vs-input label="Prix d'achat net" v-model="netPrice" type="number"
-									          @change="calculateRawPrice"/>
+									<vs-input label="Prix d'achat net" v-model="netPrice" type="number" />
 								</vs-col>
 							</vs-row>
 						</form>

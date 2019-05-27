@@ -1,5 +1,7 @@
 # nivantis
 
+[![Build Status](https://travis-ci.com/Maartz/nivantis.svg?branch=master)](https://travis-ci.com/Maartz/nivantis)
+
 ## Project setup
 ```
 npm install

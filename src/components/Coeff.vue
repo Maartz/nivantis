@@ -7,7 +7,7 @@
                 vs-w="6">
             <vs-card class="dr-card">
                 <div slot="header">
-                    <h1>Discount Rate</h1>
+                    <h1>Coefficient</h1>
                     <br>
                     <p>Coefficient : {{ this.coeff }}</p>
                 </div>
@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import {Component, Vue} from 'vue-property-decorator';
 
     @Component
     export default class Coeff extends Vue {

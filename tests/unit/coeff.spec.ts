@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import Coeff from '@/components/Coeff.vue';
+import Coeff from '@/components/DMO/Coeff.vue';
 
 describe('Coeff.vue', () => {
     it('should gives a coefficient back', async () => {

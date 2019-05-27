@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import DiscountRate from '@/components/DiscountRate.vue';
+import DiscountRate from '@/components/DMO/DiscountRate.vue';
 
 describe('DiscountRate.vue', () => {
     const discount = 50;

@@ -1,5 +1,5 @@
 import {shallowMount} from '@vue/test-utils';
-import NetPrice from '@/components/NetPrice.vue';
+import NetPrice from '@/components/DMO/NetPrice.vue';
 
 describe('NetPrice.vue', () => {
     it('Component should calculate prices', async () => {

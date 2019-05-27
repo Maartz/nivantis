@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import ActualPrice from '@/components/ActualPrice.vue';
+import ActualPrice from '@/components/DMO/ActualPrice.vue';
 
 describe('ActualPrice.vue', () => {
     const prixDeVenteNet = 10;

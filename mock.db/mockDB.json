@@ -1,0 +1,26 @@
+export let account;
+
+"account": [
+  {
+    "seq": 0,
+    "is_published": false, // <- Ca veut dire que c'est un bool avec false en valeur par défaut
+    "external": {
+
+    },
+    "public": {
+    "name": "string" // REQUIRED,
+    "ebc": 0,
+    "abv": 0,
+    "ibu": 0,
+    "organic": false,
+    "description": "string",
+    "story": "string",
+    "brewery": [
+      "string"
+    ],
+      "style": [
+        "string"
+    ]
+    }
+  }
+]

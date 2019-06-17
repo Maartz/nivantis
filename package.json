@@ -9,7 +9,6 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@types/leaflet": "^1.4.4",
     "core-js": "^2.6.5",
     "leaflet": "^1.5.1",
     "register-service-worker": "^1.6.2",
@@ -23,6 +22,7 @@
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
+    "@types/leaflet": "^1.4.4",
     "@vue/cli-plugin-babel": "^3.6.0",
     "@vue/cli-plugin-pwa": "^3.6.0",
     "@vue/cli-plugin-typescript": "^3.6.0",

@@ -7,9 +7,9 @@
                 vs-w="6">
             <vs-card class="dr-card">
                 <div slot="header">
-                    <h1>Discount Rate</h1>
+                    <h1>Remise</h1>
                     <br>
-                    <p>This is the discount rate: {{ discountRate.toFixed(2) }} %</p>
+                    <p>Pourcentage de remise : {{ discountRate.toFixed(2) }} %</p>
                 </div>
                 <vs-col vs-type="flex"
                         vs-justify="center"
@@ -23,6 +23,7 @@
                                         vs-align="center"
                                         vs-w="6">
                                     <vs-input label="Prix d'achat net"
+                                              type="number" step="0.1"
                                               v-model.number="netPrice"/>
                                 </vs-col>
                                 <vs-col vs-type="flex"
@@ -31,32 +32,13 @@
                                         vs-w="6">
                                     <vs-input
                                             label="Prix d'achat brut"
+                                            type="number" step="0.1"
                                             v-model.number="rawPrice"/>
-                                </vs-col>
-                                <vs-col vs-type="flex"
-                                        vs-justify="center"
-                                        vs-align="center"
-                                        vs-w="6">
-                                    <vs-input label="Prix de vente net"
-                                              v-model.number="sellPrice"/>
-                                </vs-col>
-                                <vs-col vs-type="flex"
-                                        vs-justify="center"
-                                        vs-align="center"
-                                        vs-w="6">
-                                    <vs-input label="Coefficient multiplicateur"
-                                              v-model.number="coeff"/>
                                 </vs-col>
                             </vs-row>
                         </form>
                     </vs-row>
                 </vs-col>
-                <vs-button :color="colorX"
-                           :gradient-color-secondary="colorX2"
-                           type="gradient"
-                           v-on:click="getDiscountRate(netPrice, rawPrice)">
-                    Calculer
-                </vs-button>
                 <vs-button color="dark"
                            type="flat"
                            v-on:click="emptyFields">
@@ -68,33 +50,32 @@
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from "vue-property-decorator";
+    import {Component, Prop, Watch, Vue} from 'vue-property-decorator';
 
     @Component
     export default class DiscountRate extends Vue {
         public index: number = 0;
 
-        public coeff: number = 0;
-        public netPrice: number = 0;
-        public discountRate: number = 0;
-        public sellPrice: number = 0;
-        public rawPrice: number = 0;
+        @Prop({default: 0}) public netPrice !: number; // PRIX D'ACHAT NET
+        @Prop({default: 0})public discountRate !: number; // POURCENTAGE DE REMISE
+        @Prop({default: 0}) public rawPrice !: number; // PRIX D'ACHAT BRUT
 
         // CSS purpose
-        public colorX: string = "#3dd495";
-        public colorX2: string = "#5252e8";
+        public colorX: string = '#3dd495';
+        public colorX2: string = '#5252e8';
 
+        @Watch('rawPrice', {immediate: true})
+        @Watch('netPrice', {immediate: true})
         public getDiscountRate(netPrice: number, rawPrice: number) {
-            const ds: number = (1 - netPrice / rawPrice) * 100;
-            return this.discountRate = ds;
+            const discountRate: number = (1 - netPrice / rawPrice) * 100;
+            return this.discountRate = discountRate;
         }
 
         public emptyFields() {
-            this.coeff = 0;
             this.netPrice = 0;
-            this.sellPrice = 0;
             this.rawPrice = 0;
         }
+
 
     }
 </script>

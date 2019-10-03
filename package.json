@@ -10,16 +10,19 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "leaflet": "^1.5.1",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.1.0",
     "vue-router": "^3.0.3",
-    "vuesax": "^3.8.61",
+    "vue2-leaflet": "^2.1.1",
+    "vuesax": "^3.8.65",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
+    "@types/leaflet": "^1.4.4",
     "@vue/cli-plugin-babel": "^3.6.0",
     "@vue/cli-plugin-pwa": "^3.6.0",
     "@vue/cli-plugin-typescript": "^3.6.0",

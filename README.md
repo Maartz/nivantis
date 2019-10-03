@@ -1,6 +1,5 @@
 # Nivantis
 
-## School Project during Bachelor's Degree @EPSI
 ```
 npm install
 ```

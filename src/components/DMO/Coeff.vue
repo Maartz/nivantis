@@ -7,9 +7,9 @@
                 vs-w="6">
             <vs-card class="dr-card">
                 <div slot="header">
-                    <h1>Actual Net Price</h1>
+                    <h1>Coefficient</h1>
                     <br>
-                    <p>This is the Actual selling net Price <tag>{{netSellPrice}}</tag></p>
+                    <p>Coefficient : {{ coeff.toFixed(2) }}</p>
                 </div>
                 <vs-col vs-type="flex"
                         vs-justify="center"
@@ -20,20 +20,20 @@
                             <vs-row>
                                 <vs-col vs-type="flex"
                                         vs-justify="center" vs-align="center" vs-w="6">
-                                    <vs-input label="Prix d'achat net" v-model.number="netBuyPrice"/>
+                                    <vs-input label="Prix d'achat net"
+                                              v-model.number="netBuyPrice" type="number"
+                                              step="1.0"/>
                                 </vs-col>
                                 <vs-col vs-type="flex"
                                         vs-justify="center" vs-align="center" vs-w="6">
-                                    <vs-input label="Coefficient multiplicateur" v-model.number="coeff"/>
+                                    <vs-input label="Prix de vente net"
+                                              v-model.number="netSellPrice" type="number"
+                                              step="1.0" />
                                 </vs-col>
                             </vs-row>
                         </form>
                     </vs-row>
                 </vs-col>
-                <vs-button :color="colorx" :gradient-color-secondary="colorx2"
-                           type="gradient"
-                           v-on:click="getActualSellPrice(netBuyPrice, coeff)">Calculer
-                </vs-button>
                 <vs-button color="dark" type="flat" v-on:click="emptyFields">Effacer</vs-button>
             </vs-card>
         </vs-col>
@@ -41,27 +41,34 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import {Component, Prop, Watch, Vue} from 'vue-property-decorator';
 
     @Component
-    export default class ActualSellPrice extends Vue {
-        public coeff: number = 0;
-        public netBuyPrice: number = 0;
-        public netSellPrice: number = 0;
+    export default class Coeff extends Vue {
+        public index: number = 0;
 
-        public colorx: string = '#FFF94C';
-        public colorx2: string = '#004FF9';
-        public getActualSellPrice(netBuyPrice: number, coeff: number) {
-                this.netSellPrice = netBuyPrice * coeff;
-                return this.netSellPrice;
+        @Prop({default: 0})public netSellPrice !: number;
+        @Prop({default: 0})public netBuyPrice !: number;
+
+        public coeff: number = 0;
+
+        // CSS purpose
+        public colorx: string = '#3dd495';
+        public colorx2: string = '#5252e8';
+
+        @Watch('netSellPrice', {immediate: true})
+        @Watch('netBuyPrice', {immediate: true})
+        public getCoeff(netSellPrice: number, netBuyPrice: number) {
+            const coeff: number =  netSellPrice / netBuyPrice;
+            return this.coeff = coeff;
         }
 
         public emptyFields() {
-            this.coeff = 0;
+            this.netSellPrice = 0;
             this.netBuyPrice = 0;
         }
-    }
 
+    }
 </script>
 
 <style scoped lang="scss">
@@ -78,3 +85,4 @@
         margin-right: 15px;
     }
 </style>
+
